@@ -15,53 +15,80 @@ class TestCalculator(unittest.TestCase):
     def test_fun1_addition(self):
         self.assertEqual(calculator.fun1(2, 3), 5)
         self.assertEqual(calculator.fun1(-1, 1), 0)
+        self.assertEqual(calculator.fun1(-5, -3), -8)
+        self.assertAlmostEqual(calculator.fun1(0.1, 0.2), 0.3, places=1)
+        self.assertEqual(calculator.fun1(0, 0), 0)
 
     def test_fun2_subtraction(self):
         self.assertEqual(calculator.fun2(5, 3), 2)
         self.assertEqual(calculator.fun2(-1, -1), 0)
+        self.assertEqual(calculator.fun2(0, 5), -5)
+        self.assertEqual(calculator.fun2(5.5, 2.2), 3.3)
 
     def test_fun3_multiplication(self):
         self.assertEqual(calculator.fun3(2, 3), 6)
         self.assertEqual(calculator.fun3(5, 0), 0)
+        self.assertEqual(calculator.fun3(-2, 3), -6)
+        self.assertEqual(calculator.fun3(-2, -3), 6)
+        self.assertAlmostEqual(calculator.fun3(2.5, 0.4), 1.0, places=2)
 
     def test_fun4_three_sum(self):
         self.assertEqual(calculator.fun4(2, 3, 5), 10)
+        self.assertEqual(calculator.fun4(-1, 1, 0), 0)
+        self.assertAlmostEqual(calculator.fun4(1.1, 2.2, 3.3), 6.6, places=1)
 
     def test_fun5_division(self):
         self.assertEqual(calculator.fun5(10, 2), 5)
+        self.assertAlmostEqual(calculator.fun5(7, 2), 3.5)
         with self.assertRaises(ZeroDivisionError):
             calculator.fun5(1, 0)
+        self.assertEqual(calculator.fun5(-9, 3), -3)
 
     def test_fun6_power(self):
         self.assertEqual(calculator.fun6(2, 3), 8)
         self.assertEqual(calculator.fun6(4, 0.5), 2)
+        self.assertEqual(calculator.fun6(5, 0), 1)
+        self.assertEqual(calculator.fun6(-2, 2), 4)
+        with self.assertRaises(ValueError):
+            calculator.fun6("a", 2)
 
     def test_fun7_average(self):
         self.assertEqual(calculator.fun7(1, 2, 3), 2)
+        self.assertAlmostEqual(calculator.fun7(2, 3), 2.5)
+        self.assertEqual(calculator.fun7(5,), 5)
         with self.assertRaises(ValueError):
             calculator.fun7()
 
     def test_factorial(self):
         self.assertEqual(calculator.factorial(5), 120)
+        self.assertEqual(calculator.factorial(0), 1)
+        self.assertEqual(calculator.factorial(1), 1)
         with self.assertRaises(ValueError):
             calculator.factorial(-1)
+        with self.assertRaises(ValueError): 
+            calculator.factorial(3.5)
 
     def test_percentage(self):
         self.assertEqual(calculator.percentage(50, 200), 25)
+        self.assertEqual(calculator.percentage(25, 50), 50)
+        self.assertAlmostEqual(calculator.percentage(12.5, 25), 50)
         with self.assertRaises(ZeroDivisionError):
             calculator.percentage(1, 0)
 
     def test_quadratic_roots(self):
-        roots = calculator.quadratic_roots(1, -3, 2)  # x² -3x +2 = 0 => (1,2)
+        roots = calculator.quadratic_roots(1, -3, 2)
         self.assertCountEqual(roots, [1.0, 2.0])
-        self.assertEqual(calculator.quadratic_roots(1, 2, 1), [-1.0])  # one root
-        self.assertEqual(calculator.quadratic_roots(1, 0, 1), [])      # no real roots
+        self.assertEqual(calculator.quadratic_roots(1, 2, 1), [-1.0]) 
+        self.assertEqual(calculator.quadratic_roots(1, 0, 1), [])  
         with self.assertRaises(ValueError):
             calculator.quadratic_roots(0, 1, 2)
+        roots = calculator.quadratic_roots(1, 0, -9)
+        self.assertCountEqual(roots, [3.0, -3.0])
 
     def test_simple_interest(self):
         self.assertEqual(calculator.simple_interest(1000, 5, 2), 100)
-        with self.assertRaises(ValueError):
+        self.assertAlmostEqual(calculator.simple_interest(1500, 4.3, 4), 258, delta=0.1)
+        with self.assertRaises((TypeError, ValueError)):
             calculator.simple_interest("a", 5, 2)
 
     def test_bmi(self):

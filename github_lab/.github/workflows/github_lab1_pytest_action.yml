@@ -1,4 +1,4 @@
-name: Run Pytest with Coverage
+name: Pytest Dashboard
 
 on:
   push:
@@ -22,18 +22,20 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest pytest-cov
+          pip install pytest
 
-      - name: Run pytest with coverage
+      - name: Run pytest (show pass/fail of each test)
+        env:
+          PYTHONPATH: .
         run: |
-          pytest --maxfail=1 --disable-warnings -q --cov=src --cov-report=term-missing
+          # -v  : verbose (lists each test and status)
+          # no coverage flags, no print clutter
+          pytest -v --maxfail=1 --disable-warnings
 
-      - name: Generate HTML coverage report
-        run: |
-          pytest --cov=src --cov-report=html
+      - name: Notify on success
+        if: success()
+        run: echo "All pytest cases passed successfully!"
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: pytest-coverage-report
-          path: htmlcov
+      - name: Notify on failure
+        if: failure()
+        run: echo "Some pytest cases failed. Check logs above for details."

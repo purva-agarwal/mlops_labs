@@ -59,3 +59,41 @@ def test_bmi():
     assert round(calculator.bmi(70, 1.75), 4) == 22.8571
     with pytest.raises(ValueError):
         calculator.bmi(70, 0)
+
+def test_factorial_basic():
+    assert calculator.factorial(5) == 120
+    assert calculator.factorial(0) == 1
+
+def test_factorial_invalid():
+    with pytest.raises(ValueError):
+        calculator.factorial(-5)
+    with pytest.raises(ValueError):
+        calculator.factorial(2.5)
+
+def test_percentage_basic():
+    assert calculator.percentage(50, 200) == 25
+    assert calculator.percentage(25, 50) == 50
+
+def test_percentage_zero_whole():
+    with pytest.raises(ZeroDivisionError):
+        calculator.percentage(10, 0)
+
+def test_quadratic_two_roots():
+    roots = calculator.quadratic_roots(1, -3, 2)
+    assert set(roots) == {1.0, 2.0}
+
+def test_quadratic_one_root():
+    assert calculator.quadratic_roots(1, 2, 1) == [-1.0]
+
+def test_quadratic_no_root():
+    assert calculator.quadratic_roots(1, 0, 1) == []
+
+def test_simple_interest():
+    assert calculator.simple_interest(1000, 5, 2) == 100
+
+def test_bmi_normal():
+    assert round(calculator.bmi(70, 1.75), 2) == 22.86
+
+def test_bmi_invalid():
+    with pytest.raises(ValueError):
+        calculator.bmi(60, 0)
