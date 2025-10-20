@@ -1,0 +1,22 @@
+[2025-10-20T23:36:58.352+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-10-20T23:36:58.387+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Airflow_Lab1_TaskFlow_FileIO.build_model_task manual__2025-10-20T23:35:58.452593+00:00 [queued]>
+[2025-10-20T23:36:58.400+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Airflow_Lab1_TaskFlow_FileIO.build_model_task manual__2025-10-20T23:35:58.452593+00:00 [queued]>
+[2025-10-20T23:36:58.401+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2025-10-20T23:36:58.425+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): build_model_task> on 2025-10-20 23:35:58.452593+00:00
+[2025-10-20T23:36:58.445+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=359) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-10-20T23:36:58.451+0000] {standard_task_runner.py:63} INFO - Started process 385 to run task
+[2025-10-20T23:36:58.450+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'Airflow_Lab1_TaskFlow_FileIO', 'build_model_task', 'manual__2025-10-20T23:35:58.452593+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/***.py', '--cfg-path', '/tmp/tmp2dryd0w2']
+[2025-10-20T23:36:58.456+0000] {standard_task_runner.py:91} INFO - Job 16: Subtask build_model_task
+[2025-10-20T23:36:58.556+0000] {task_command.py:426} INFO - Running <TaskInstance: Airflow_Lab1_TaskFlow_FileIO.build_model_task manual__2025-10-20T23:35:58.452593+00:00 [running]> on host 0074cd054b76
+[2025-10-20T23:36:58.706+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='your_name' AIRFLOW_CTX_DAG_ID='Airflow_Lab1_TaskFlow_FileIO' AIRFLOW_CTX_TASK_ID='build_model_task' AIRFLOW_CTX_EXECUTION_DATE='2025-10-20T23:35:58.452593+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-10-20T23:35:58.452593+00:00'
+[2025-10-20T23:36:58.711+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-10-20T23:36:58.712+0000] {airflow.py:81} INFO - Building model from /opt/***/dags/data/scaled.npy
+[2025-10-20T23:37:14.447+0000] {airflow.py:83} INFO - Model saved as /opt/***/dags/model/model.sav
+[2025-10-20T23:37:14.448+0000] {python.py:237} INFO - Done. Returned value was: {'sse': [250.3280420929143, 128.89457877623198, 91.64796947554562, 72.46932731979095, 59.863272852498845, 52.062042375091096, 46.597186677802554, 41.503691835394186, 36.95114238763415, 33.9884713289003, 31.158175787006275, 28.841604325536082, 26.97524444037084, 25.31069460440263, 23.8708785791484, 22.747624804029904, 21.53078145664583, 20.786198216896736, 20.1649550227054, 19.36517825083054, 18.808369593226246, 18.340560866407355, 17.910673647108272, 17.4986961014533, 16.925499000396094, 16.745697587901514, 15.971849566736275, 15.713641610762615, 15.265240945761883, 15.123488668482398, 14.956846830736165, 14.56440486778039, 14.346219766384518, 14.241510405343835, 13.878564948981431, 13.709270074630068, 13.323041961354464, 13.140532592766856, 12.780547568395749, 12.90274377648467, 12.781639801700791, 12.40709411323553, 11.969429488066998, 12.04217376564812, 11.862509887788734, 11.759060787676967, 11.511387460490855, 11.707834596270319, 11.459746173831958], 'saved_filename': '/opt/***/dags/model/model.sav'}
+[2025-10-20T23:37:14.449+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-10-20T23:37:14.488+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=Airflow_Lab1_TaskFlow_FileIO, task_id=build_model_task, run_id=manual__2025-10-20T23:35:58.452593+00:00, execution_date=20251020T233558, start_date=20251020T233658, end_date=20251020T233714
+[2025-10-20T23:37:14.560+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-10-20T23:37:14.582+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-10-20T23:37:14.589+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

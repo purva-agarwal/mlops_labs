@@ -1,0 +1,21 @@
+[2025-10-20T23:36:22.217+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-10-20T23:36:22.240+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Airflow_Lab1_TaskFlow_FileIO.validate_after_build_task scheduled__2025-10-19T00:00:00+00:00 [queued]>
+[2025-10-20T23:36:22.247+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Airflow_Lab1_TaskFlow_FileIO.validate_after_build_task scheduled__2025-10-19T00:00:00+00:00 [queued]>
+[2025-10-20T23:36:22.248+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2025-10-20T23:36:22.269+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): validate_after_build_task> on 2025-10-19 00:00:00+00:00
+[2025-10-20T23:36:22.280+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=189) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-10-20T23:36:22.283+0000] {standard_task_runner.py:63} INFO - Started process 215 to run task
+[2025-10-20T23:36:22.283+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'Airflow_Lab1_TaskFlow_FileIO', 'validate_after_build_task', 'scheduled__2025-10-19T00:00:00+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/***.py', '--cfg-path', '/tmp/tmpwuwe4smt']
+[2025-10-20T23:36:22.290+0000] {standard_task_runner.py:91} INFO - Job 9: Subtask validate_after_build_task
+[2025-10-20T23:36:22.438+0000] {task_command.py:426} INFO - Running <TaskInstance: Airflow_Lab1_TaskFlow_FileIO.validate_after_build_task scheduled__2025-10-19T00:00:00+00:00 [running]> on host 0074cd054b76
+[2025-10-20T23:36:22.903+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='your_name' AIRFLOW_CTX_DAG_ID='Airflow_Lab1_TaskFlow_FileIO' AIRFLOW_CTX_TASK_ID='validate_after_build_task' AIRFLOW_CTX_EXECUTION_DATE='2025-10-19T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-10-19T00:00:00+00:00'
+[2025-10-20T23:36:22.905+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-10-20T23:36:22.906+0000] {airflow.py:88} INFO - Running post-preprocess validation on /opt/***/dags/data/scaled.npy
+[2025-10-20T23:36:22.915+0000] {python.py:237} INFO - Done. Returned value was: {'preprocessed_shape': [8636, 3], 'preprocessed_dtype': 'float64'}
+[2025-10-20T23:36:22.915+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-10-20T23:36:22.956+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=Airflow_Lab1_TaskFlow_FileIO, task_id=validate_after_build_task, run_id=scheduled__2025-10-19T00:00:00+00:00, execution_date=20251019T000000, start_date=20251020T233622, end_date=20251020T233622
+[2025-10-20T23:36:23.004+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-10-20T23:36:23.027+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-10-20T23:36:23.032+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
