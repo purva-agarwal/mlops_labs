@@ -27,7 +27,7 @@ from src.lab import (
 log = logging.getLogger(__name__)
 
 DEFAULT_ARGS = {
-    "owner": "your_name",
+    "owner": "Purva",
     "depends_on_past": False,
     "retries": 1,
     "retry_delay": timedelta(minutes=5),
