@@ -12,6 +12,10 @@ import pandas as pd
 from sklearn.linear_model import ElasticNet
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+import seaborn as sns
+import json
+from datetime import datetime
 
 import mlflow
 import mlflow.sklearn
@@ -56,6 +60,11 @@ if __name__ == "__main__":
     l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
 
     with mlflow.start_run():
+        mlflow.set_tag("model_type", "ElasticNet")
+        mlflow.set_tag("dataset", "wine-quality")
+        mlflow.set_tag("developer", "mlops_team")
+        mlflow.set_tag("version", "1.0")
+        mlflow.set_tag("training_date", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
         lr.fit(train_x, train_y)
 
@@ -70,9 +79,65 @@ if __name__ == "__main__":
 
         mlflow.log_param("alpha", alpha)
         mlflow.log_param("l1_ratio", l1_ratio)
+        mlflow.log_param("random_state", 42)
+        mlflow.log_param("train_test_split_ratio", 0.75)
         mlflow.log_metric("rmse", rmse)
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
+        mlflow.log_metric("train_size", len(train_x))
+        mlflow.log_metric("test_size", len(test_x))
+        mlflow.log_metric("n_features", train_x.shape[1])
+        
+        plt.figure(figsize=(10, 6))
+        plt.scatter(test_y, predicted_qualities, alpha=0.5)
+        plt.plot([test_y.min(), test_y.max()], [test_y.min(), test_y.max()], 'r--', lw=2)
+        plt.xlabel('Actual Quality')
+        plt.ylabel('Predicted Quality')
+        plt.title(f'Actual vs Predicted (R2={r2:.3f})')
+        plt.savefig('predictions_plot.png')
+        mlflow.log_artifact('predictions_plot.png')
+        plt.close()
+        
+        residuals = test_y.values.flatten() - predicted_qualities
+        plt.figure(figsize=(10, 6))
+        plt.scatter(predicted_qualities, residuals, alpha=0.5)
+        plt.axhline(y=0, color='r', linestyle='--')
+        plt.xlabel('Predicted Quality')
+        plt.ylabel('Residuals')
+        plt.title('Residual Plot')
+        plt.savefig('residuals_plot.png')
+        mlflow.log_artifact('residuals_plot.png')
+        plt.close()
+        
+        feature_importance = pd.DataFrame({
+            'feature': train_x.columns,
+            'coefficient': lr.coef_.flatten()
+        }).sort_values('coefficient', key=abs, ascending=False)
+        
+        plt.figure(figsize=(10, 8))
+        plt.barh(feature_importance['feature'], feature_importance['coefficient'])
+        plt.xlabel('Coefficient Value')
+        plt.title('Feature Importance (Coefficients)')
+        plt.tight_layout()
+        plt.savefig('feature_importance.png')
+        mlflow.log_artifact('feature_importance.png')
+        plt.close()
+        
+        metrics_summary = {
+            'rmse': rmse,
+            'mae': mae,
+            'r2': r2,
+            'alpha': alpha,
+            'l1_ratio': l1_ratio,
+            'train_size': len(train_x),
+            'test_size': len(test_x)
+        }
+        with open('metrics_summary.json', 'w') as f:
+            json.dump(metrics_summary, f, indent=4)
+        mlflow.log_artifact('metrics_summary.json')
+        
+        data.describe().to_csv('data_summary.csv')
+        mlflow.log_artifact('data_summary.csv')
 
         predictions = lr.predict(train_x)
         signature = infer_signature(train_x, predictions)

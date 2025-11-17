@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/370d64fdeb4a487b8ae920733c81d54d/artifacts
+end_time: 1763397821167
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 370d64fdeb4a487b8ae920733c81d54d
+run_name: wise-wren-749
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763397792536
+status: 3
+tags: []
+user_id: purva

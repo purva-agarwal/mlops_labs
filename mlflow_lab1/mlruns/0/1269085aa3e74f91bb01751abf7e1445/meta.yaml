@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/1269085aa3e74f91bb01751abf7e1445/artifacts
+end_time: 1763398737837
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1269085aa3e74f91bb01751abf7e1445
+run_name: Lasso_Autolog
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763398709486
+status: 3
+tags: []
+user_id: purva

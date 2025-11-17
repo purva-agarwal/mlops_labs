@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/3f4a3bf904ec412ca12c8750e9fb7447/artifacts
+end_time: 1763398766983
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3f4a3bf904ec412ca12c8750e9fb7447
+run_name: GradientBoosting_Autolog
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763398737909
+status: 3
+tags: []
+user_id: purva

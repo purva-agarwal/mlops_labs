@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/e2883269039a49f2ab9e3f896b2bd4ac/artifacts
+end_time: 1763398048531
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e2883269039a49f2ab9e3f896b2bd4ac
+run_name: salty-roo-965
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763398018064
+status: 3
+tags: []
+user_id: purva

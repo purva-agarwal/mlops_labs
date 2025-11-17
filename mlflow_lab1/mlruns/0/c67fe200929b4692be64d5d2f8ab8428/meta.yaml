@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/c67fe200929b4692be64d5d2f8ab8428/artifacts
+end_time: 1763397904311
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c67fe200929b4692be64d5d2f8ab8428
+run_name: fearless-gull-294
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763397876675
+status: 3
+tags: []
+user_id: purva

@@ -1,0 +1,10 @@
+artifact_location: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/models/m-c3274ecbcf3d4c3494b2f64dec1b11ed/artifacts
+creation_timestamp: 1763399120355
+experiment_id: '0'
+last_updated_timestamp: 1763399121548
+model_id: m-c3274ecbcf3d4c3494b2f64dec1b11ed
+model_type: null
+name: constraints_file
+source_run_id: fbde8b6be32b46e49c9d6bd252c1c0a3
+status: 2
+status_message: null

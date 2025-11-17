@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/58e4e231e3bc4e87a91982fdaedfcb08/artifacts
+end_time: 1763398135070
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 58e4e231e3bc4e87a91982fdaedfcb08
+run_name: bright-whale-389
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763398106580
+status: 3
+tags: []
+user_id: purva

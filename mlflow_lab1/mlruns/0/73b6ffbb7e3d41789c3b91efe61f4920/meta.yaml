@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/73b6ffbb7e3d41789c3b91efe61f4920/artifacts
+end_time: 1763397988396
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 73b6ffbb7e3d41789c3b91efe61f4920
+run_name: bouncy-boar-108
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763397959693
+status: 3
+tags: []
+user_id: purva

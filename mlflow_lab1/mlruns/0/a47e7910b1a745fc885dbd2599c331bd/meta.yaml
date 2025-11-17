@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/a47e7910b1a745fc885dbd2599c331bd/artifacts
+end_time: 1763398195345
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a47e7910b1a745fc885dbd2599c331bd
+run_name: merciful-mink-749
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763398165545
+status: 3
+tags: []
+user_id: purva

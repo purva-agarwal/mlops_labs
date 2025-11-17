@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/657912131100412197816b93322321a4/artifacts
+end_time: 1763398934434
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 657912131100412197816b93322321a4
+run_name: Manual_Logging
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763398908584
+status: 3
+tags: []
+user_id: purva

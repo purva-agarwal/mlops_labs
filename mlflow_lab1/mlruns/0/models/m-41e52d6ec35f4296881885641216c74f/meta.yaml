@@ -1,0 +1,10 @@
+artifact_location: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/models/m-41e52d6ec35f4296881885641216c74f/artifacts
+creation_timestamp: 1763399076200
+experiment_id: '0'
+last_updated_timestamp: 1763399104240
+model_id: m-41e52d6ec35f4296881885641216c74f
+model_type: null
+name: extra_pip_requirements
+source_run_id: fbde8b6be32b46e49c9d6bd252c1c0a3
+status: 2
+status_message: null

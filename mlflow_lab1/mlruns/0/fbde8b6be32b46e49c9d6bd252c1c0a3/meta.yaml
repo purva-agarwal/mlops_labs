@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/fbde8b6be32b46e49c9d6bd252c1c0a3/artifacts
+end_time: 1763399129938
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fbde8b6be32b46e49c9d6bd252c1c0a3
+run_name: unique-stoat-921
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763399007195
+status: 3
+tags: []
+user_id: purva

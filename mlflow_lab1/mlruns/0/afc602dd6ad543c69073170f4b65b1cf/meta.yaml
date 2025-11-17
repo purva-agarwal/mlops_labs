@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/afc602dd6ad543c69073170f4b65b1cf/artifacts
+end_time: 1763398908451
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: afc602dd6ad543c69073170f4b65b1cf
+run_name: CrossValidation_Autolog
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763398767043
+status: 3
+tags: []
+user_id: purva

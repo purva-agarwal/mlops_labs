@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/c8b6ba853e43484ebc3da5849255f52a/artifacts
+end_time: 1763398227168
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c8b6ba853e43484ebc3da5849255f52a
+run_name: overjoyed-ox-35
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763398195405
+status: 3
+tags: []
+user_id: purva

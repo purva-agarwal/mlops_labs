@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/064ae967c0434b07a5e7d6578c966d18/artifacts
+end_time: 1763398018016
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 064ae967c0434b07a5e7d6578c966d18
+run_name: luxuriant-chimp-114
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763397988657
+status: 3
+tags: []
+user_id: purva

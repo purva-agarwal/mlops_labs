@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/05c40dc01341476eb00401b30a075082/artifacts
+end_time: 1763398227447
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 05c40dc01341476eb00401b30a075082
+run_name: Hyperparameter_Tuning_Experiment
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763397713954
+status: 3
+tags: []
+user_id: purva

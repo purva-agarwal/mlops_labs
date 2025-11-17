@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/df3db14cf114461e8d0601e052e42a93/artifacts
+end_time: 1763397931146
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: df3db14cf114461e8d0601e052e42a93
+run_name: righteous-sloth-109
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763397904398
+status: 3
+tags: []
+user_id: purva

@@ -1,0 +1,3 @@
+{
+  "Ridge_score_test_x": "Ridge.score(X=test_x, y=test_y)"
+}

@@ -1,0 +1,10 @@
+artifact_location: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/models/m-bf8ffbed1f6944ed9583fc80236b22a5/artifacts
+creation_timestamp: 1763397793538
+experiment_id: '0'
+last_updated_timestamp: 1763397820962
+model_id: m-bf8ffbed1f6944ed9583fc80236b22a5
+model_type: null
+name: model
+source_run_id: 370d64fdeb4a487b8ae920733c81d54d
+status: 2
+status_message: null

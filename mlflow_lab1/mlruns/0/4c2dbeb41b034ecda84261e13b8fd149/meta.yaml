@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/4c2dbeb41b034ecda84261e13b8fd149/artifacts
+end_time: 1763397764929
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4c2dbeb41b034ecda84261e13b8fd149
+run_name: kindly-fox-206
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763397714469
+status: 3
+tags: []
+user_id: purva

@@ -1,0 +1,14 @@
+artifact_uri: file:///mnt/d/Study/mlops_labs/mlflow_lab1/mlruns/0/600a75a6b6a94b278ca6de028e48cb39/artifacts
+end_time: 1763397959617
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 600a75a6b6a94b278ca6de028e48cb39
+run_name: handsome-shrike-101
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763397931194
+status: 3
+tags: []
+user_id: purva
