@@ -1,6 +1,6 @@
 # MLflow Lab 1 - Complete Guide
 
-Comprehensive MLflow lab demonstrating experiment tracking, model management, and deployment.
+MLflow lab demonstrating experiment tracking, model management, and deployment.
 
 ## Quick Start
 
