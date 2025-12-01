@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
@@ -8,15 +10,16 @@ services:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ports:
       - "9200:9200"
+      - "9300:9300"
     volumes:
-      - es_data:/usr/share/elasticsearch/data
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - elk
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -q '\"status\":\"green\"\\|\"status\":\"yellow\"'"]
       interval: 30s
       timeout: 10s
       retries: 5
-    networks:
-      - elk-network
 
   logstash:
     image: docker.elastic.co/logstash/logstash:8.11.0
@@ -25,15 +28,14 @@ services:
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
     ports:
       - "5044:5044"
-      - "5000:5000/tcp"
-      - "5000:5000/udp"
+      - "9600:9600"
     environment:
       - "LS_JAVA_OPTS=-Xms256m -Xmx256m"
+    networks:
+      - elk
     depends_on:
       elasticsearch:
         condition: service_healthy
-    networks:
-      - elk-network
 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.11.0
@@ -42,34 +44,34 @@ services:
       - "5601:5601"
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    networks:
+      - elk
     depends_on:
       elasticsearch:
         condition: service_healthy
-    networks:
-      - elk-network
 
-  iris-api:
+  ml-api:
     build: .
-    container_name: iris-api-elk
+    container_name: ml-api
     ports:
       - "8000:8000"
     environment:
       - PYTHONUNBUFFERED=1
-      - LOGSTASH_HOST=logstash
-      - LOGSTASH_PORT=5000
       - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
     volumes:
-      - ./logs:/logs
+      - ./logs:/app/logs
       - ./src:/app/src
-    depends_on:
-      - logstash
-      - elasticsearch
     networks:
-      - elk-network
+      - elk
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
 
 volumes:
-  es_data:
+  elasticsearch_data:
+    driver: local
 
 networks:
-  elk-network:
+  elk:
     driver: bridge

@@ -1,37 +1,18 @@
-import os
-import logging
-import logstash
 import time
-from datetime import datetime
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from src.train import train_model
-
-LOGSTASH_HOST = os.getenv("LOGSTASH_HOST", "localhost")
-LOGSTASH_PORT = int(os.getenv("LOGSTASH_PORT", 5000))
-
-logger = logging.getLogger("iris-api")
-logger.setLevel(logging.INFO)
-
-try:
-    logstash_handler = logstash.TCPLogstashHandler(LOGSTASH_HOST, LOGSTASH_PORT, version=1)
-    logger.addHandler(logstash_handler)
-    logger.info("Logstash handler connected successfully")
-except Exception as e:
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"))
-    logger.addHandler(console_handler)
-    logger.warning(f"Could not connect to Logstash, using console: {e}")
-
-IRIS_CLASSES = {0: "setosa", 1: "versicolor", 2: "virginica"}
+from src.elk_logger import elk_logger
 
 app = FastAPI(
-    title="Iris Model API with ELK",
-    description="ML Prediction API with Elasticsearch-Logstash-Kibana logging",
+    title="ELK Lab - Iris Prediction API",
+    description="ML API with ELK Stack logging integration",
     version="1.0.0"
 )
 
+elk_logger.log_event("APP_STARTUP", "FastAPI application starting...")
 model = train_model()
+elk_logger.log_event("APP_READY", "FastAPI application ready to serve predictions")
 
 class IrisInput(BaseModel):
     sepal_length: float
@@ -41,44 +22,48 @@ class IrisInput(BaseModel):
 
 class PredictionResponse(BaseModel):
     prediction: int
-    species: str
-    confidence: float
-    timestamp: str
+    class_name: str
+    latency_ms: float
+
+IRIS_CLASSES = ["setosa", "versicolor", "virginica"]
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     start_time = time.time()
     response = await call_next(request)
-    process_time = time.time() - start_time
+    latency_ms = (time.time() - start_time) * 1000
     
-    logger.info(
-        "HTTP Request",
-        extra={
-            "type": "http-request",
-            "method": request.method,
-            "path": str(request.url.path),
-            "status_code": response.status_code,
-            "process_time_ms": round(process_time * 1000, 2),
-            "client_host": request.client.host if request.client else "unknown"
-        }
+    elk_logger.log_api_request(
+        endpoint=str(request.url.path),
+        method=request.method,
+        status_code=response.status_code,
+        latency_ms=round(latency_ms, 2)
     )
+    
     return response
 
 @app.get("/")
 def home():
-    logger.info("Home endpoint accessed", extra={"type": "api-access", "endpoint": "home"})
+    elk_logger.log_event("HOME_ACCESS", "Home endpoint accessed")
     return {
-        "message": "Iris Prediction API with ELK Stack",
-        "docs": "/docs",
-        "kibana": "http://localhost:5601"
+        "message": "ELK Lab - Iris Prediction API is running!",
+        "version": "1.0.0",
+        "elk_status": "Logs streaming to Elasticsearch"
     }
 
 @app.get("/health")
 def health_check():
-    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+    elk_logger.log_event("HEALTH_CHECK", "Health check performed")
+    return {
+        "status": "healthy",
+        "model_loaded": model is not None,
+        "elk_logging": True
+    }
 
 @app.post("/predict", response_model=PredictionResponse)
 def predict(data: IrisInput):
+    start_time = time.time()
+    
     features = [[
         data.sepal_length,
         data.sepal_width,
@@ -87,39 +72,27 @@ def predict(data: IrisInput):
     ]]
     
     prediction = model.predict(features)[0]
-    probabilities = model.predict_proba(features)[0]
-    confidence = float(max(probabilities))
-    species = IRIS_CLASSES.get(int(prediction), "unknown")
-    timestamp = datetime.now().isoformat()
+    class_name = IRIS_CLASSES[prediction]
     
-    logger.info(
-        f"Prediction made: {species}",
-        extra={
-            "type": "iris-prediction",
-            "sepal_length": data.sepal_length,
-            "sepal_width": data.sepal_width,
-            "petal_length": data.petal_length,
-            "petal_width": data.petal_width,
-            "prediction": int(prediction),
-            "species": species,
-            "confidence": round(confidence, 4),
-            "timestamp": timestamp
-        }
+    latency_ms = (time.time() - start_time) * 1000
+    
+    elk_logger.log_prediction(
+        input_features=features[0],
+        prediction=int(prediction),
+        latency_ms=round(latency_ms, 2)
     )
     
     return PredictionResponse(
         prediction=int(prediction),
-        species=species,
-        confidence=round(confidence, 4),
-        timestamp=timestamp
+        class_name=class_name,
+        latency_ms=round(latency_ms, 2)
     )
 
-@app.get("/stats")
-def get_stats():
-    logger.info("Stats endpoint accessed", extra={"type": "api-access", "endpoint": "stats"})
+@app.get("/logs/stats")
+def log_stats():
+    elk_logger.log_event("STATS_REQUEST", "Log statistics requested")
     return {
-        "model_type": "RandomForestClassifier",
-        "n_estimators": 100,
-        "classes": IRIS_CLASSES,
-        "features": ["sepal_length", "sepal_width", "petal_length", "petal_width"]
+        "message": "View logs in Kibana at http://localhost:5601",
+        "elasticsearch_index": elk_logger.index_name,
+        "hint": "Create an index pattern 'ml-logs-*' in Kibana to visualize logs"
     }
